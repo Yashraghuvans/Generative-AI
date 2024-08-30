@@ -25,8 +25,7 @@ days = input("From how many days are you sick = ")
 
 #prompt
 
-prompt = f" I was having {problem} medical condition and i was sick for {days} days with having these {symptoms} symptoms. 
-        Suggest me some primary treatments and medicans for my medical condition "
+prompt = f" I was having {problem} medical condition and i was sick for {days} days with having these {symptoms} symptoms. Suggest me some primary treatments and medicans for my medical condition "
 messages = [{"role": "user", "content": prompt}]
 
 # prints response
