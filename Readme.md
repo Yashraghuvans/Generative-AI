@@ -20,7 +20,7 @@ Generative AI (Gen AI) empowers machines to create new and original content. Thi
 ## Contribution Guidelines
 <img align="right" alt="Coding" width="300" height="270" src="https://i.pinimg.com/originals/54/53/70/54537036a5587397e8f49f705e1d7077.gif">
 
-Feel free to contribute to this project! Here's how:
+
 
 1. Fork this repository on GitHub.
 2. Create a new branch for your changes (e.g., `git checkout -b my-feature`).
