@@ -1,10 +1,11 @@
-
+#importing all the required packages
 import assemblyai as aai
 from openai import OpenAI
 import elevenlabs
 import pyaudio
 
 class AI_Assistant:
+    #Inisilizing all the api_keys
     def __init__(self):
         aai.settings.api_key = "API_KEY"
         self.openai_client = OpenAI(api_key="API_Key")
@@ -15,6 +16,7 @@ class AI_Assistant:
             {"role": "system", "content": "You are a specialist assistant, providing concise and effective guidance."}
         ]
 
+    # Transcription 
     def start_transcribing(self):
       self.transcriber = aai.RealtimeTranscriber(
         sample_rate=16000,
@@ -30,8 +32,9 @@ class AI_Assistant:
             self.transcriber.close()
             self.transcriber = None
 
+
+    #Functions defined in Transcription which is avaliable in docs of elevenlabs
     def on_open(self, session_opened: aai.RealtimeSessionOpened):
-        # print("Session ID:", session_opened.session_id)
         return
 
     def on_data(self, transcript: aai.RealtimeTranscript):
@@ -44,12 +47,12 @@ class AI_Assistant:
             print(transcript.text, end="\r")
 
     def on_error(self, error: aai.RealtimeError):
-        # print("An error occurred:", error)
         return
 
     def on_close(self):
-        # print("Closing Session")
         return
+
+    # Generating the rersponse from AI
 
     def generative_ai_response(self, transcript):
         self.full_transcript.append({"role": "user", "content": transcript.text})
@@ -61,7 +64,8 @@ class AI_Assistant:
         )
         ai_response = response.choices[0].message.content
         self.generate_audio(ai_response)
-
+    
+    #Converting the response into audio 
     def generate_audio(self, text):
         self.full_transcript.append({"role": "assistant", "content": text})
         print(f"Answer: {text}")
@@ -73,6 +77,7 @@ class AI_Assistant:
         )
         elevenlabs.stream(audio)
 
+# initial greeting 
 greeting = "Welcome ! My self Nexus, How can I assist you today?"
 print(greeting)
 ai_assistant = AI_Assistant()
