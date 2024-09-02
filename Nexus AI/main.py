@@ -5,6 +5,7 @@ import elevenlabs
 import pyaudio
 
 class AI_Assistant:
+    # STEP 1
     #Inisilizing all the api_keys
     def __init__(self):
         aai.settings.api_key = "API_KEY"
@@ -15,7 +16,7 @@ class AI_Assistant:
         self.full_transcript = [
             {"role": "system", "content": "You are a specialist assistant, providing concise and effective guidance."}
         ]
-
+    # STEP 2
     # Transcription 
     def start_transcribing(self):
       self.transcriber = aai.RealtimeTranscriber(
@@ -32,7 +33,7 @@ class AI_Assistant:
             self.transcriber.close()
             self.transcriber = None
 
-
+    # STEP 3
     #Functions defined in Transcription which is avaliable in docs of elevenlabs
     def on_open(self, session_opened: aai.RealtimeSessionOpened):
         return
@@ -51,7 +52,7 @@ class AI_Assistant:
 
     def on_close(self):
         return
-
+    # STEP 4
     # Generating the rersponse from AI
 
     def generative_ai_response(self, transcript):
@@ -64,7 +65,7 @@ class AI_Assistant:
         )
         ai_response = response.choices[0].message.content
         self.generate_audio(ai_response)
-    
+    #STEP 5
     #Converting the response into audio 
     def generate_audio(self, text):
         self.full_transcript.append({"role": "assistant", "content": text})
@@ -76,7 +77,7 @@ class AI_Assistant:
             api_key=self.elevenlabs_api_key
         )
         elevenlabs.stream(audio)
-
+# STEP 6 (OPTIONAL)
 # initial greeting 
 greeting = "Welcome ! My self Nexus, How can I assist you today?"
 print(greeting)
