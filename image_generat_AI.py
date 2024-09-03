@@ -6,8 +6,8 @@ from PIL import Image
 
 dotenv.load_dotenv()
 
-openai.api_base=os.environ['Azure End Point']
-openai.api_key=os.environ['Azure Api_key']
+openai.api_base=os.environ['Azure_End_Point']
+openai.api_key=os.environ['Azure_Api_key']
 openai.api_version = '2023-06-01-preview'
 openai.api_type = 'azure'
 
